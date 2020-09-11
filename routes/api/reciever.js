@@ -10,9 +10,9 @@ router
     //@route        GET api/donor/me
     //@description  Get current donor profile
     //@access       Private
-    .get('/me', auth, async (req, res) => {
+    .get('/current', auth, async (req, res) => {
         try {
-            const reciever = await Reciever.findOne({ user: req.user.id }).populate('user', ['name', 'email', 'contact', 'location']);
+            const reciever = await Reciever.findOne({ user: req.user.id }).populate('user', ['name', 'email', 'contact']);
             if (!reciever) {
                 return res.status(400).json({ mssg: 'Profile not found' });
             }
@@ -23,27 +23,28 @@ router
         }
     })
     //@route        GET api/donor/all
-    //@description  Get all profile
+    //@description  Get all reciever profile
     //@access       Private
-    .get('/me', auth, async (req, res) => {
+    .get('/all', auth, async (req, res) => {
         try {
-            const donor = await Donor.find().populate('user', ['name', 'email', 'contact', 'location']);
-            if (!donor) {
+            const reciever = await Reciever.find().populate('user', ['name', 'email', 'contact']);
+            if (!reciever) {
                 return res.status(400).json({ mssg: 'No donor found' });
             }
-            res.json(donor);
+            res.json(reciever);
         } catch (err) {
             console.log(err.message);
             res.status(500).send("Server Error");
         }
     })
     //@route        POST api/donor
-    //@description  Create or update the donor profile
+    //@description  Create or update the reciever profile
     //@access       Private
     .post('/',
         [
             auth,
             check('organizaionName', 'Organization Name is required').not().isEmpty(),
+            check('location', 'Location is required').not().isEmpty()
         ],
         async (req, res) => {
             const errors = validationResult(req);
@@ -51,12 +52,14 @@ router
                 return res.status(400).json({ errors: errors.array() });
             }
             const {
-                organizaionName
+                organizaionName,
+                location
             } = req.body;
 
             const recieverData = {};
             recieverData.user = req.user.id;
             recieverData.organizaionName = organizaionName;
+            recieverData.location = location.toUpperCase();
 
             try {
                 let reciever = await Reciever.findOne({ user: req.user.id });

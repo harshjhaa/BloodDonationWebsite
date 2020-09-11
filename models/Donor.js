@@ -6,6 +6,7 @@ const DonorSchema = new mongoose.Schema({
     age: { type: String, required: true },
     bloodGroup: { type: String, required: true },
     alergy: { type: String, required: true },
+    location: { type: String, required: true }, 
 })
 
 module.exports = Donor = mongoose.model('donor', DonorSchema);

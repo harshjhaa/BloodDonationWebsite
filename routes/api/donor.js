@@ -13,7 +13,7 @@ router
     //@access       Private
     .get('/all', auth, async (req, res) => {
         try {
-            const donor = await Donor.find().populate('user', ['name', 'email', 'contact', 'location']);
+            const donor = await Donor.find().populate('user', ['name', 'email', 'contact']);
             if (!donor) {
                 return res.status(400).json({ mssg: 'Profile not found' });
             }
@@ -30,7 +30,7 @@ router
         [
             auth,
             check('bloodGroup', 'Blood Group is required').not().isEmpty(),
-            // check('location', 'Location is required').not().isEmpty(),
+            check('location', 'Location is required').not().isEmpty(),
             check('alergy', 'Alergies is required').not().isEmpty(),
         ],
         auth, async (req, res) => {
@@ -39,19 +39,14 @@ router
                 return res.status(400).json({ errors: errors.array() });
             }
             try {
-                const donorLocation = await User.find({ location: req.body.location });
-                const donor = await Donor.find({ bloodGroup: req.body.bloodGroup, alergy: req.body.alergy })
-                    .populate('user', ['name', 'email', 'contact', 'location']);
-                if (donorLocation.length !== 0) {
-                    if (donor.length === 0) {
-                        // console.log('No Match Found' )
-                        return res.status(400).json({ mssg: 'No Match Found' });
-                    }
-                    // console.log('Found donor');
-                    res.json(donor);
-                }else{
+                const donor = await Donor.find({ bloodGroup: req.body.bloodGroup, alergy: req.body.alergy, location: req.body.location.toUpperCase() })
+                    .populate('user', ['name', 'email', 'contact']);
+                if (donor.length === 0) {
+                    // console.log('No Match Found' )
                     return res.status(400).json({ mssg: 'No Match Found' });
                 }
+                // console.log('Found donor');
+                res.json(donor);
             } catch (err) {
                 console.log(err.message);
                 res.status(500).send("Server Error");
@@ -81,7 +76,8 @@ router
             check('gender', 'Gender is required').not().isEmpty(),
             check('age', 'Age is required').not().isEmpty(),
             check('bloodGroup', 'Blood Group is required').not().isEmpty(),
-            check('alergy', 'Alergies is required').not().isEmpty()
+            check('alergy', 'Alergies is required').not().isEmpty(),
+            check('location', 'Location is required').not().isEmpty()
         ],
         async (req, res) => {
             const errors = validationResult(req);
@@ -92,7 +88,8 @@ router
                 gender,
                 age,
                 bloodGroup,
-                alergy
+                alergy,
+                location
             } = req.body;
 
             const donorData = {};
@@ -101,6 +98,7 @@ router
             donorData.gender = gender;
             donorData.bloodGroup = bloodGroup;
             donorData.alergy = alergy.toLowerCase();
+            donorData.location = location.toUpperCase();
 
             try {
                 let donor = await Donor.findOne({ user: req.user.id });
