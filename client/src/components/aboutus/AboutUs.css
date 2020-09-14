@@ -1,0 +1,56 @@
+.aboutus-title {
+    color: #111;
+}
+
+.aboutus-center {
+    display: flex;
+    justify-content: center;
+}
+
+.under-line {
+    border-top: 2.5px solid rgb(233, 75, 2);
+    width: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+}
+
+.aboutus-description {
+    margin-top: 20px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.aboutus-description p {
+    text-align: center;
+}
+
+/* .tilted {
+    width: 100%;
+    background-color: rgba(253, 165, 0, 0.315);
+    transform: rotate(2deg);
+    top: -5%;
+    left: -5%;
+}
+
+.tilted-data {
+    transform: rotate(-2deg);
+} */
+
+.team-container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.team-members {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.team-members img {
+    border-radius: 50%;
+}

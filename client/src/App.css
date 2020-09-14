@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* overflow-y: hidden; */
+    /* overflow-x: hidden; */
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.display-name {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 20px;
+    color: rgba(245, 245, 245, 0.562);
+}

@@ -1,0 +1,26 @@
+.landing {
+    margin-top: 180px;
+}
+
+.landing-inner {
+    color: #fff;
+    height: 100%;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.lead {
+    font-size: 1rem;
+}
+
+.login-signup-button {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
