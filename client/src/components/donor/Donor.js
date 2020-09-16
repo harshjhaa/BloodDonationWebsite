@@ -1,15 +1,27 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { connect } from 'react-redux'
+import { registerDonor } from '../../redux-tools/action/registration';
 import './Donor.css'
 
-const Donor = () => {
+const Donor = ({ registerDonor }) => {
 
-    const handleRegisterEvent = () => {
+    const [formData, setFormData] = useState({
+        bloodGroup: '',
+        alergy: '',
+        age: '',
+        location: '',
+        gender: ''
+    });
 
+    const { bloodGroup, alergy, age, location, gender } = formData;
+
+    const handleRegisterEvent = (e) => {
+        e.preventDefault();
+        registerDonor({ bloodGroup, alergy, age, location, gender });
     }
 
-    const handleChangeEvent = () => {
-
+    const handleChangeEvent = (e, fieldName) => {
+        setFormData({ ...formData, [fieldName]: e.target.value })
     }
 
     return (
@@ -35,12 +47,12 @@ const Donor = () => {
                     <div className="row">
                         <div className="col-2">
                             <div className="male-female-text">
-                                < input required type="radio" name="gender" value="male" onChange={e => handleChangeEvent(e, 'gender')} /> Male
+                                < input required type="radio" value="male" onChange={e => handleChangeEvent(e, 'gender')} /> Male
                             </div>
                         </div>
                         <div className="col-7">
                             <div className="male-female-text">
-                                < input required type="radio" name="gender" value="female" onChange={e => handleChangeEvent(e, 'gender')} /> Female
+                                < input required type="radio" value="female" onChange={e => handleChangeEvent(e, 'gender')} /> Female
                             </div>
                         </div>
                     </div>
@@ -52,4 +64,4 @@ const Donor = () => {
     );
 };
 
-export default Donor;
+export default connect(null, { registerDonor })(Donor);

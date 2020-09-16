@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../../models/User')
+const auth = require('../../middleware/auth')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const config = require('config')
@@ -49,4 +50,17 @@ router
                 res.status(500).json('Server Error');
             }
         })
+    //@route        GET api/auth
+    //@description  Testing route
+    //@access       Public (no authentication needed)
+    .get('/', auth, async (req, res) => {
+        try {
+            const user = await User.findById(req.user.id).select('-password');
+            res.json(user);
+        } catch (err) {
+            console.log(err.message);
+            res.status(500).send('Server Error');
+            // res.status(500).send(err.message)
+        }
+    })
 module.exports = router

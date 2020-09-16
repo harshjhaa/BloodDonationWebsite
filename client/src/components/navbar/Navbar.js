@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-
+import React, { Fragment } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../redux-tools/action/auth';
 import './Navbar.css';
 
-const Navbar = ({ history }) => {
+const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
+
+    const handleLogoutEvent = () => {
+        logout();
+        console.log("Logout clicked");
+        history.push('/')
+    }
 
     const authLinks = (
         <ul>
-            <li><Link to="/home" className="nav-link-items">HOME</Link></li>
+            <li><Link to="/dashboard" className="nav-link-items">HOME</Link></li>
             <li><Link to="/about-us" className="nav-link-items">ABOUT US</Link></li>
             <li><Link to="/contact-us" className="nav-link-items">CONTACT US</Link></li>
             <li>
-                <Link /* onClick={logout} */ href="#!">
-                    <i className="fa fa-sign-out-alt"></i>
-                    {' '}
-                    <span className="hide-sm">Logout</span>
+                <Link className="nav-link-items" onClick={e => handleLogoutEvent()} href="#!">
+                    <span className="hide-sm">LOGOUT</span>
                 </Link>
             </li>
         </ul>
@@ -22,25 +27,30 @@ const Navbar = ({ history }) => {
 
     const guestLinks = (
         <ul>
-            <li><Link to="/home" className="nav-link-items">HOME</Link></li>
+            <li><Link to="/dashboard" className="nav-link-items">HOME</Link></li>
             <li><Link to="/about-us" className="nav-link-items">ABOUT US</Link></li>
             <li><Link to="/contact-us" className="nav-link-items">CONTACT US</Link></li>
-            <li><Link to="/register" className="nav-link-items">REGISTER</Link></li>
             <li><Link to="/login" className="nav-link-items">LOGIN</Link></li>
+            <li><Link to="/register" className="nav-link-items">REGISTER</Link></li>
         </ul>
     );
 
     return (
-        <div className="nav-container">
+        <nav className="nav-container">
             <div className="nav">
                 <img className="nav-logo" src="./images/nav-logo.png" width="180" height="55" alt="logo" />
-                {/* {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)} */}
                 <div className="nav-links">
-                    {guestLinks}
+                    {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
                 </div>
             </div>
-        </div>
+        </nav>
     );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => (
+    {
+        auth: state.authReducer
+    }
+)
+
+export default connect(mapStateToProps, { logout })(Navbar);
