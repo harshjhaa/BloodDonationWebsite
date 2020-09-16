@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerReciever } from '../../redux-tools/action/registration';
+import { registerReciever, loadReciever } from '../../redux-tools/action/registration';
 import './Reciever.css';
 
-const Reciever = ({ registerReciever, isRegistered }) => {
+const Reciever = ({ registerReciever, isReciever }) => {
+
+    useEffect(() => {
+        loadReciever();
+    }, []);
 
     const [formData, setFormData] = useState({
         organizaionName: '',
@@ -13,7 +17,8 @@ const Reciever = ({ registerReciever, isRegistered }) => {
 
     const { organizaionName, location } = formData;
 
-    const handleRegisterEvent = () => {
+    const handleRegisterEvent = (e) => {
+        e.preventDefault();
         registerReciever({ organizaionName, location });
     }
 
@@ -21,7 +26,7 @@ const Reciever = ({ registerReciever, isRegistered }) => {
         setFormData({ ...formData, [fieldName]: e.target.value })
     }
 
-    if (isRegistered) {
+    if (isReciever) {
         return <Redirect to="/search-donor" />
     }
 
@@ -49,8 +54,8 @@ const Reciever = ({ registerReciever, isRegistered }) => {
 
 const mapStateToProps = (state) => (
     {
-        isRegistered: state.recieverReducer.isRegistered
+        isReciever: state.recieverReducer.isReciever
     }
 )
 
-export default connect(mapStateToProps, { registerReciever })(Reciever);
+export default connect(mapStateToProps, { registerReciever, loadReciever })(Reciever);

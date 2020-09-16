@@ -11,7 +11,7 @@ const SearchDonor = () => {
             <div className="card-header" style={{ textAlign: 'center' }}>
                 SEARCH FOR DONOR
                 </div>
-            <div div className="card-body" >
+            <div className="card-body" >
                 <form className="from-to-date-content d-flex justify-content-around" onSubmit={e => handleSubmit(e)}>
                     <div className="form-inline">
                         <div className="form-group">
@@ -30,7 +30,7 @@ const SearchDonor = () => {
                     </div>
                     <div>
                         <button className="btn btn-danger btn-sm" type="submit" >SEARCH</button>
-                        <button className="btn btn-danger btn-sm" style={{ "margin-left": "20px" }} type="button">RESET</button>
+                        <button className="btn btn-danger btn-sm" style={{ marginLeft: "20px" }} type="button">RESET</button>
                     </div>
                 </form>
             </div >

@@ -37,7 +37,9 @@ const App = () => {
         <div className="app">
           <Route render={props => <Navbar {...props} />} />
           <Route exact path="/" component={Landing} />
-          <Alert style={{ marginTop: '50px' }} />
+          <div style={{ marginTop: '50px' }} >
+            <Alert />
+          </div>
           <Switch>
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
