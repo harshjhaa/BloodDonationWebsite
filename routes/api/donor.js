@@ -26,20 +26,21 @@ router
     //@route        GET api/donor/me
     //@description  Get current donor profile
     //@access       Private
-    .get('/search-donor',
+    .post('/search',
         [
             auth,
             check('bloodGroup', 'Blood Group is required').not().isEmpty(),
             check('location', 'Location is required').not().isEmpty(),
             check('alergy', 'Alergies is required').not().isEmpty(),
-        ],
-        auth, async (req, res) => {
+        ], async (req, res) => {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
+                console.log("No Data Provided");
                 return res.status(400).json({ errors: errors.array() });
             }
             try {
-                const donor = await Donor.find({ bloodGroup: req.body.bloodGroup, alergy: req.body.alergy, location: req.body.location.toUpperCase() })
+                // console.log(req.body);
+                const donor = await Donor.find({ bloodGroup: req.body.bloodGroup, alergy: req.body.alergy.toLowerCase(), location: req.body.location.toUpperCase() })
                     .populate('user', ['name', 'email', 'contact']);
                 if (donor.length === 0) {
                     // console.log('No Match Found' )
