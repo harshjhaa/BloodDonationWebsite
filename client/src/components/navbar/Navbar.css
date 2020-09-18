@@ -17,6 +17,15 @@
     align-items: center;
 }
 
+.nav img{
+    padding: 2px;
+}
+
+.nav img:hover {
+    transition: .7s;
+    background-color: rgb(255, 0, 0);
+}
+
 .nav-links ul {
     display: flex;
     justify-content: space-between;
@@ -36,6 +45,6 @@
 
 .nav-link-items:hover {
     background-color: white;
-    font-size: 17px;
+    font-size: 19px;
     color: #b60303;
 }

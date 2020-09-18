@@ -8,7 +8,14 @@
     color: whitesmoke;
 }
 
-.age-input ::-webkit-inner-spin-button, 
-.age-input ::-webkit-outer-spin-button {
+.age-input ::-webkit-inner-spin-button, .age-input ::-webkit-outer-spin-button {
     -webkit-appearance: none;
+}
+
+.donor-form-container h1 {
+    width: 45rem;
+    color: #111;
+    font-size: 2rem; 
+    font-weight: 800;
+    padding: 0.3rem;
 }

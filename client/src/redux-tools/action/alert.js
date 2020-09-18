@@ -1,6 +1,6 @@
 import { SET_ALERT, REMOVE_ALERT } from './types';
 
-export const setAlert = (msg, alertType, timeout = 1500) => dispatch => {
+export const setAlert = (msg, alertType, timeout = 2000) => dispatch => {
     let currentdate = new Date();
     let id = (currentdate.getDate()).toString()
         + (currentdate.getMonth() + 1).toString()

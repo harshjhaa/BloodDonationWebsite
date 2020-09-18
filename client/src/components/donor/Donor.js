@@ -1,13 +1,10 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerDonor, loadDonor } from '../../redux-tools/action/registration';
+import { registerDonor } from '../../redux-tools/action/registration';
 import './Donor.css';
 
-const Donor = ({ registerDonor, loadDonor, isDonor }) => {
-
-    useEffect(() => {
-        loadDonor();
-    }, []);
+const Donor = ({ registerDonor, isDonor }) => {
 
     const [formData, setFormData] = useState({
         bloodGroup: '',
@@ -68,8 +65,14 @@ const Donor = ({ registerDonor, loadDonor, isDonor }) => {
             );
         } else {
             return (
-                <h1 className="banner-title">Thanks for your support.You are already a registered as a 'Donor'.
-            You will be contected if someone needs blood.</h1>
+                <div className="donor-form-container">
+                    <h1>Thanks for your support.You are already a registered as a 'Donor'.
+                    You will be contacted if someone needs blood.</h1>
+                    <h1>Also ask your known ones to register for this good cause.</h1>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Link className="btn btn-danger" to="/dashboard">Go To Dashboard</Link>
+                    </div>
+                </div>
             );
         }
     }
@@ -87,4 +90,4 @@ const mapStateToProps = (state) => (
     }
 )
 
-export default connect(mapStateToProps, { registerDonor, loadDonor })(Donor);
+export default connect(mapStateToProps, { registerDonor })(Donor);

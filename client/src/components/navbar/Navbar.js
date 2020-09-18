@@ -15,6 +15,7 @@ const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
     const authLinks = (
         <ul>
             <li><Link to="/dashboard" className="nav-link-items">HOME</Link></li>
+            <li><Link to="/my-profile" className="nav-link-items">MY PROFILE</Link></li>
             <li><Link to="/about-us" className="nav-link-items">ABOUT US</Link></li>
             <li><Link to="/contact-us" className="nav-link-items">CONTACT US</Link></li>
             <li>
@@ -38,7 +39,13 @@ const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
     return (
         <nav className="nav-container">
             <div className="nav">
-                <img className="nav-logo" src="./images/nav-logo.png" width="180" height="55" alt="logo" />
+                <img
+                    style={{ cursor: 'pointer' }}
+                    className="nav-logo"
+                    src="./images/nav-logo.png"
+                    width="180" height="55"
+                    alt="logo"
+                />
                 <div className="nav-links">
                     {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
                 </div>

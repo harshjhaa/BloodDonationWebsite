@@ -1,14 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { registerReciever, loadReciever } from '../../redux-tools/action/registration';
+import { registerReciever } from '../../redux-tools/action/registration';
 import './Reciever.css';
 
 const Reciever = ({ registerReciever, isReciever }) => {
-
-    useEffect(() => {
-        loadReciever();
-    }, []);
 
     const [formData, setFormData] = useState({
         organizaionName: '',
@@ -58,4 +54,4 @@ const mapStateToProps = (state) => (
     }
 )
 
-export default connect(mapStateToProps, { registerReciever, loadReciever })(Reciever);
+export default connect(mapStateToProps, { registerReciever })(Reciever);
