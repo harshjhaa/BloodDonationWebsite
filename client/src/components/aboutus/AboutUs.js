@@ -5,7 +5,7 @@ const AboutUs = () => {
 
     const teamMembers = [
         { name: "Jhon Doe", image: "./member1.png" },
-        { name: "Jhon Doe", image: "./member2.png" },
+        { name: "Mansi P.", image: "./member2.png" },
         { name: "Jhon Doe", image: "./member3.png" },
         { name: "Jhon Doe", image: "./member4.png" },
     ]
@@ -15,15 +15,15 @@ const AboutUs = () => {
             return (
                 <div key={member.name}>
                     <img src={member.image} height="80" width="80" alt="member image" />
-                    <h5>{member.name}</h5>
+                    <h5 style={{ textAlign: 'center' }}>{member.name}</h5>
                 </div>
             )
         }))
     }
 
     return (
-        <div >
-            <h2 className="aboutus-title aboutus-center"> KNOW ABOUT FINDBLOOD.IO</h2>
+        <div className="aboutus-container" >
+            <h2 className="aboutus-title aboutus-center"> KNOW ABOUT FINDBLOOD.ORG</h2>
             <div className="under-line"> </div>
             <div className="aboutus-description">
                 <p>It's a blood donation tracking platform, where we promote blood-donation, facilitate

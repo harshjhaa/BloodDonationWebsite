@@ -13,6 +13,8 @@ import Donor from './components/donor/Donor'
 import Reciever from './components/reciever/Reciever'
 import SearchDonor from './components/search-donor/SearchDonor'
 import MyProfile from './components/my-profile/MyProfile'
+import AboutUs from './components/aboutus/AboutUs'
+import ContactUs from './components/contact-us/ContactUs'
 import Alert from './components/alert/Alert';
 
 //redux
@@ -49,6 +51,8 @@ const App = () => {
             <PrivateRoute path="/reciever-registration" component={Reciever} />
             <PrivateRoute path="/search-donor" component={SearchDonor} />
             <PrivateRoute path="/my-profile" component={MyProfile} />
+            <Route path="/about-us" component={AboutUs} />
+            <Route path="/contact-us" component={ContactUs} />
           </Switch>
         </div>
       </Router>

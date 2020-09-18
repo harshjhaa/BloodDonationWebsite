@@ -65,10 +65,11 @@ const Donor = ({ registerDonor, isDonor }) => {
             );
         } else {
             return (
-                <div className="donor-form-container">
-                    <h1>Thanks for your support.You are already a registered as a 'Donor'.
-                    You will be contacted if someone needs blood.</h1>
-                    <h1>Also ask your known ones to register for this good cause.</h1>
+                <div style={{ marginTop: 80 }} className="container jumbotron">
+                    <h3>Thanks for your support. You are already a registered as a 'Donor'.
+                    You will be contacted if someone needs blood.</h3>
+                    <h4>Also ask your known ones to register for this good cause.</h4>
+                    <br/>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Link className="btn btn-danger" to="/dashboard">Go To Dashboard</Link>
                     </div>
