@@ -1,0 +1,19 @@
+.my-profile-form-container {
+    width: 50%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.my-profile-form label {
+    color: whitesmoke;
+}
+
+.my-profile-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.my-profile-age-input ::-webkit-inner-spin-button, .my-profile-age-input ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setAlert } from './alert'
 import {
-    REGISTRATION_SUCCESS, REGISTRATION_FAIL, RECIEVER_LOADED,
+    REGISTRATION_SUCCESS_RECIEVER, REGISTRATION_SUCCESS_DONOR, REGISTRATION_FAIL, RECIEVER_LOADED,
     RECIEVER_LOADING_ERROR, DONOR_LOADING_ERROR, DONOR_LOADED
 } from './types';
 
@@ -36,6 +36,7 @@ export const loadDonor = () => async dispatch => {
 }
 
 export const registerReciever = ({ organizaionName, location }) => async dispatch => {
+    console.log({ organizaionName, location })
     const config = {
         headers: {
             'Content-Type': 'application/json'
@@ -45,10 +46,10 @@ export const registerReciever = ({ organizaionName, location }) => async dispatc
     try {
         const res = await axios.post('/api/reciever', body, config);
         dispatch({
-            type: REGISTRATION_SUCCESS,
+            type: REGISTRATION_SUCCESS_RECIEVER,
             payload: res.data
         });
-        // dispatch(setAlert("Success", 'success'));
+        dispatch(setAlert("Success", 'success'));
         dispatch(loadReciever());
     } catch (err) {
         const errors = err.response.data.errors;
@@ -71,10 +72,11 @@ export const registerDonor = ({ bloodGroup, alergy, age, location, gender }) => 
     try {
         const res = await axios.post('/api/donor', body, config);
         dispatch({
-            type: REGISTRATION_SUCCESS,
+            type: REGISTRATION_SUCCESS_DONOR,
             payload: res.data
         });
-        dispatch(loadReciever());
+        dispatch(setAlert("Success", 'success'));
+        dispatch(loadDonor());
     } catch (err) {
         const errors = err.response.data.errors;
         if (errors) {

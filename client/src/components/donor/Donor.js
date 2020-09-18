@@ -49,12 +49,12 @@ const Donor = ({ registerDonor, isDonor }) => {
                                 <div className="col-2">
                                     <div className="male-female-text">
                                         < input required type="radio" value="male" onChange={e => handleChangeEvent(e, 'gender')} /> Male
-                            </div>
+                                    </div>
                                 </div>
                                 <div className="col-7">
                                     <div className="male-female-text">
                                         < input required type="radio" value="female" onChange={e => handleChangeEvent(e, 'gender')} /> Female
-                            </div>
+                                    </div>
                                 </div>
                             </div>
                             <br />

@@ -1,5 +1,5 @@
 import {
-    REGISTRATION_FAIL, REGISTRATION_SUCCESS, RECIEVER_LOADED,
+    REGISTRATION_FAIL, REGISTRATION_SUCCESS_RECIEVER, REGISTRATION_SUCCESS_DONOR, RECIEVER_LOADED,
     RECIEVER_LOADING_ERROR, DONOR_LOADING_ERROR, DONOR_LOADED
 } from '../action/types';
 
@@ -16,7 +16,7 @@ const initialStateD = {
 export function recieverReducer(state = initialStateR, action) {
     const { type, payload } = action;
     switch (type) {
-        case REGISTRATION_SUCCESS: {
+        case REGISTRATION_SUCCESS_RECIEVER: {
             return {
                 ...state,
                 ...payload,
@@ -50,7 +50,7 @@ export function recieverReducer(state = initialStateR, action) {
 export function donorReducer(state = initialStateD, action) {
     const { type, payload } = action;
     switch (type) {
-        case REGISTRATION_SUCCESS: {
+        case REGISTRATION_SUCCESS_DONOR: {
             return {
                 ...state,
                 ...payload,
