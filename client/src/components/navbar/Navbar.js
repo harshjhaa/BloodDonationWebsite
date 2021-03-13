@@ -18,6 +18,7 @@ const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
             <li><Link to="/my-profile" className="nav-link-items">MY PROFILE</Link></li>
             <li><Link to="/about-us" className="nav-link-items">ABOUT US</Link></li>
             <li><Link to="/contact-us" className="nav-link-items">CONTACT US</Link></li>
+            <li><Link to="/feedback" className="nav-link-items">FEEDBACK</Link></li>
             <li>
                 <Link className="nav-link-items" onClick={e => handleLogoutEvent()} href="#!">
                     <span className="hide-sm">LOGOUT</span>
@@ -39,6 +40,7 @@ const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
     return (
         <nav className="nav-container">
             <div className="nav">
+                <Link to="/dashboard">
                 <img
                     style={{ cursor: 'pointer' }}
                     className="nav-logo"
@@ -46,6 +48,8 @@ const Navbar = ({ history, logout, auth: { isAuthenticated, loading } }) => {
                     width="180" height="55"
                     alt="logo"
                 />
+                </Link>
+                
                 <div className="nav-links">
                     {!loading && (<Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>)}
                 </div>

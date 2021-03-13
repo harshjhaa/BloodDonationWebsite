@@ -16,6 +16,7 @@ import MyProfile from './components/my-profile/MyProfile'
 import AboutUs from './components/aboutus/AboutUs'
 import ContactUs from './components/contact-us/ContactUs'
 import Alert from './components/alert/Alert';
+import Feedback from './components/feedback/Feedback';
 
 //redux
 import store from './redux-tools/store/store';
@@ -51,6 +52,7 @@ const App = () => {
             <PrivateRoute path="/reciever-registration" component={Reciever} />
             <PrivateRoute path="/search-donor" component={SearchDonor} />
             <PrivateRoute path="/my-profile" component={MyProfile} />
+            <PrivateRoute path="/feedback" component={Feedback} />
             <Route path="/about-us" component={AboutUs} />
             <Route path="/contact-us" component={ContactUs} />
           </Switch>
