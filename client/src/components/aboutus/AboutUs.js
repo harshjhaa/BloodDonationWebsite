@@ -4,10 +4,10 @@ import './AboutUs.css';
 const AboutUs = () => {
 
     const teamMembers = [
-        { name: "Jhon Doe", image: "./member1.png" },
-        { name: "Mansi P.", image: "./member2.png" },
-        { name: "Jhon Doe", image: "./member3.png" },
-        { name: "Jhon Doe", image: "./member4.png" },
+        { name: "Harsh Jha", image: "./member1.png" },
+        { name: "Harsh Jha", image: "./member2.png" },
+        { name: "Harsh Jha", image: "./member3.png" },
+        { name: "Harsh Jha", image: "./member4.png" },
     ]
 
     const getTeamMemberData = () => {

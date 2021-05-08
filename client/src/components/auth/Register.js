@@ -51,10 +51,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                             <input placeholder="Contact Number" required type="text" className="form-control" onChange={e => handleChangeEvent(e, 'contact')} />
                         </div>
                         <div className="form-group age-input">
-                            <input placeholder="Password" type="text" required className="form-control" onChange={e => handleChangeEvent(e, 'password')} />
+                            <input placeholder="Password" type="password" required className="form-control" onChange={e => handleChangeEvent(e, 'password')} />
                         </div>
                         <div className="form-group age-input">
-                            <input placeholder="Confirm Password" type="text" required className="form-control" onChange={e => handleChangeEvent(e, 'cpassword')} />
+                            <input placeholder="Confirm Password" type="password" required className="form-control" onChange={e => handleChangeEvent(e, 'cpassword')} />
                         </div>
                         <button style={{ width: '100%' }} type="submit" className="btn btn-danger">REGISTER</button>
                         <br />

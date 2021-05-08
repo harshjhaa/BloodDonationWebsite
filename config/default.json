@@ -1,4 +1,4 @@
 {
     "mongoURI": "mongodb+srv://jha:jha@cluster-demo-1-agxfu.mongodb.net/blood-donation?retryWrites=true&w=majority",
-    "jwtSecret": "mansipriya"
+    "jwtSecret": "harshjha"
 }
